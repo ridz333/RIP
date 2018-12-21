@@ -1,0 +1,12 @@
+<div class="col-4" style="padding: 1%;">
+    <div class="card">
+        <img class="card-img-top" src="{{ model.image }}" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title">
+                {{ model.title }}
+            </h2>
+            <p class="card-text">{{model.description}}</p>
+            <a href="{{ model.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+        </div>
+    </div>
+</div>

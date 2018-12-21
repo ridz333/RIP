@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 align="center">{{model.title}}</h1>
+    <p align="center">{{model.description}}</p>
+    <div align="center"><img src="/{{model.image}}" alt="asd" width="600"></div>
+    <div align="center"  class="my-5"><a href="/" class="btn btn-success">Вернуться назад</a></div>
+</div>
+{% endblock %}
