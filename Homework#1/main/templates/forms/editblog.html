@@ -1,0 +1,26 @@
+<form action="{% url 'main:editblog' blog.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p class="form-group">
+        <input type="text" name="title" value="{{ blog.title }}" class="form-control">
+    </p>
+    <p class="form-group">
+        <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ blog.description }}</textarea>
+    </p>
+    <div id="images" class="form-group">
+        <span class="btn btn-file"><input type="file" name="image1" class="form-control-file"></span>
+    </div>
+    <a onclick="addFileInputForm()" href="#" class="btn btn-light mb-3" style="box-shadow: 1px 1px 2px black">Еще</a>
+    {% for img in images %}
+        <p>
+            <img src="/{{ img.image.url }}" alt="" width="100" style="border-radius: 15px; box-shadow: 2px 2px 3px black">
+            <a href="{% url 'main:deleteimage' blog.id img.id%}" class="btn btn-danger">X</a>
+        </p>
+    {% endfor %}
+    <input type="submit" class="btn btn-light" value="Изменить">
+</form>
+<script>
+    function addFileInputForm() {
+        block = document.getElementById('images');
+        block.innerHTML += '<span class="btn btn-file"><input type="file" name="image'+((block.querySelectorAll('input')).length + 1)+'" class="form-control-file"></span>';
+    }
+</script>

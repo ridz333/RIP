@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container" style="margin-bottom: calc(120px + 3rem)!important;">
+        {% if request.user.is_superuser %}
+            {% include 'forms/blog.html' %}
+        {% endif %}
+        <div class="row">
+            {% for blog in blogs %}
+                {% include 'blog/blog.html' %}
+            {% endfor %}
+        </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+                 <li class="page-item"><p class="page-link">Навигация</p></li>
+              {% for p in pagnav %}
+                <li class="page-item"><a class="page-link" href="/?page={{ p }}">{{ p }}</a></li>
+              {% endfor %}
+          </ul>
+        </nav>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script>
+    $('.images-slider').slick({
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 3
+    });
+    blogs = document.querySelectorAll('.blog');
+    for (i = 0; i < blogs.length; i++){
+        const height = blogs[i].offsetHeight;
+        if (height > 500){
+            document.getElementById('comment' + blogs[i].id).style.height = '500px';
+        } else {
+            document.getElementById('comment' + blogs[i].id).style.height = height + 'px'
+        }
+    }
+    </script>
+{% endblock %}

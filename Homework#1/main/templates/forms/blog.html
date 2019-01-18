@@ -1,0 +1,31 @@
+<h2>Добавление поста <a href="#" class="btn btn-warning mb-2" onclick="openBlogForm(this)">Развернуть</a></h2>
+<form method="POST" action="{% url 'main:home' %}" enctype="multipart/form-data" hidden id="blogform">
+    {% csrf_token %}
+    <p class="form-group">
+        <input type="text" name="title" placeholder="Заголовок" class="form-control">
+    </p>
+    <p class="form-group">
+        <textarea name="description" id="" cols="30" rows="10" class="form-control">Описание...</textarea>
+    </p>
+    <div id="images" class="form-group">
+        <span class="btn btn-file"><input type="file" name="image1" class="form-control-file"></span>
+    </div>
+    <a onclick="addFileInputForm()" href="#" class="btn btn-light" style="box-shadow: 1px 1px 2px black">Еще</a>
+    <input type="submit" class="btn btn-success" value="Добавить" style="box-shadow: 1px 1px 2px black">
+</form>
+<script>
+    function addFileInputForm() {
+        block = document.getElementById('images');
+        block.innerHTML += '<span class="btn btn-file"><input type="file" name="image'+((block.querySelectorAll('input')).length + 1)+'" class="form-control-file"></span>';
+    }
+    function openBlogForm(elem) {
+        is_hidden = document.getElementById('blogform').hidden;
+        if (is_hidden){
+            document.getElementById('blogform').hidden = false;
+            elem.innerHTML = 'Свернуть'
+        } else {
+            document.getElementById('blogform').hidden = true;
+            elem.innerHTML = 'Развернуть'
+        }
+    }
+</script>
