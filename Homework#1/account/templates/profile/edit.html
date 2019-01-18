@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container about">
+        <div class="row">
+            <div class="col-4 offset-2 input-img-hover" style="height: 210px">
+                <div class="avatar-img">
+                    <img src="/{{ user.profile.photo.url }}" alt="Аватарка">
+                </div>
+            </div>
+            <div class="col-5">
+                <form method="post" class="edit" action="{% url 'account:edit' %}" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+                    <input type="submit" class="btn btn-light" style="box-shadow: 0 0 3px var(--shadow);" value="Изменить">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+
+{% endblock %}

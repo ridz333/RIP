@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="auth col-6 offset-3 p-5 my-5" style="margin-bottom: calc(120px + 3rem)!important;">
+        <form class="login_form" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-light mt-2" value="Зарегистрироваться">
+        </form>
+    </div>
+{% endblock %}
